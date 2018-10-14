@@ -22,10 +22,11 @@ public class GUI {
     private JLabel text_sample;
     private JLabel text_output;
     private JComboBox comboBox1;
-    private JButton button1;
     private JPanel simple_mode;
     private JTextArea text_command;
-    private JTextField textField1;
+
+    static String user;
+    static String password;
 
     public GUI() {
         login_Button.addActionListener(new ActionListener() {
@@ -34,8 +35,8 @@ public class GUI {
                 // login action
                 String driver = login_JDBC_driver.getText();
                 String URL = login_URL.getText();
-                String user = login_user.getText();
-                String password = login_password.getText();
+                user = login_user.getText();
+                password = login_password.getText();
                 String error_message = "Login information is not correct, please try again";
 
 
@@ -44,6 +45,10 @@ public class GUI {
                     Connection connection = DriverManager.getConnection(URL, user, password);
 
                     // switch to operation page
+                    main_panel.removeAll();
+                    main_panel.add(operation_panel);
+                    main_panel.repaint();
+                    main_panel.revalidate();
                 }
                 catch (SQLException e1)
                 {
@@ -53,6 +58,8 @@ public class GUI {
                 {
                     JOptionPane.showMessageDialog(null, error_message);
                 }
+
+                // for test
                 main_panel.removeAll();
                 main_panel.add(operation_panel);
                 main_panel.repaint();
