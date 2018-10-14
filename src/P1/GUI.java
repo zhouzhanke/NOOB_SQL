@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+// import java.sql.Connection;
+// import java.sql.DriverManager;
+// import java.sql.SQLException;
+import java.sql.*;
 
 public class GUI {
     private JPanel main_panel;
@@ -20,13 +21,19 @@ public class GUI {
     private JButton help_button;
     private JButton logout_button;
     private JLabel text_sample;
-    private JLabel text_output;
+    private JTextArea text_output;
     private JComboBox comboBox1;
     private JPanel simple_mode;
     private JTextArea text_command;
+    private JButton command_run;
+    private JButton simple_run;
 
-    static String user;
-    static String password;
+    private Statement statement;
+    ResultSet result;
+    int columnsNumber;
+    ResultSetMetaData rsmd;
+    // static String;
+    // static String;
 
     public GUI() {
         login_Button.addActionListener(new ActionListener() {
@@ -35,16 +42,22 @@ public class GUI {
                 // login action
                 String driver = login_JDBC_driver.getText();
                 String URL = login_URL.getText();
-                user = login_user.getText();
-                password = login_password.getText();
+                String user = login_user.getText();
+                String password = login_password.getText();
                 String error_message = "Login information is not correct, please try again";
 
 
                 try{
-                    Class.forName(driver);
-                    Connection connection = DriverManager.getConnection(URL, user, password);
+                    // Class.forName(driver);
+                    // Connection connection = DriverManager.getConnection(URL, user, password);
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection connection;
+                    // connection = DriverManager.getConnection("jdbc:mysql://localhost:10630/test", "zzk", "123");
+                    connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "zzk", "123");
+                    statement = connection.createStatement();
 
                     // switch to operation page
+                    JOptionPane.showMessageDialog(null, "login success.");
                     main_panel.removeAll();
                     main_panel.add(operation_panel);
                     main_panel.repaint();
@@ -52,18 +65,20 @@ public class GUI {
                 }
                 catch (SQLException e1)
                 {
+                    System.out.print(e1);
                     JOptionPane.showMessageDialog(null, error_message);
                 }
                 catch (Exception e2)
                 {
+                    System.out.print(e2);
                     JOptionPane.showMessageDialog(null, error_message);
                 }
 
                 // for test
-                main_panel.removeAll();
-                main_panel.add(operation_panel);
-                main_panel.repaint();
-                main_panel.revalidate();
+                // main_panel.removeAll();
+                // main_panel.add(operation_panel);
+                // main_panel.repaint();
+                // main_panel.revalidate();
             }
         });
         logout_button.addActionListener(new ActionListener() {
@@ -106,6 +121,65 @@ public class GUI {
                 }
             }
         });
+        command_run.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // command line input
+                String SQL_code = text_command.getText();
+                result = null;
+                try {
+                    result = statement.executeQuery(SQL_code);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                String output = "";
+                // try {
+
+                //     while (result.next()) {
+                //         String temp = null;
+                //         try {
+                //             temp = result.getString("EM_ID");
+                //         } catch (SQLException e1) {
+                //             JOptionPane.showMessageDialog(null, "SQL code fail 1.");
+                //             e1.printStackTrace();
+                //         }
+                //         output = temp.replace("\n", ",");
+                //         System.out.println(output);
+                //     }
+                // }
+                // catch (SQLException e2) {
+                //     JOptionPane.showMessageDialog(null, "SQL code fail 2.");
+                //     e2.printStackTrace();
+                // }
+                try {
+                    rsmd = result.getMetaData();
+                    columnsNumber = rsmd.getColumnCount();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                try {
+                    while (result.next()) {
+                        for (int i = 1; i <= columnsNumber; i++) {
+                            if (i > 1) System.out.print(",  ");
+                            String columnValue = result.getString(i);
+                            try {
+                                // System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                                output += columnValue + " " + rsmd.getColumnName(i);
+                            } catch (SQLException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                        // System.out.println("");
+                        output += "\n";
+                    }
+                }
+                catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+                text_output.setText(output);
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -115,5 +189,6 @@ public class GUI {
         main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main_frame.pack();
         main_frame.setVisible(true);
+
     }
 }
