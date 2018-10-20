@@ -23,7 +23,15 @@ public class connect
 	public static void main(String[] args)
 	{
 		Scanner scan = new Scanner(System.in);
-		String resutl = scan;
-		System.out.println(resutl);
+		String result_u, result_p;
+		result_u = scan.nextLine();
+		result_p = scan.nextLine();
+
+		System.out.println(result_u + result_p);
 		scan.close();
+
+
+		Class.forName(JDBC_DRIVER);
+		Connection conn = DriverManager.getConnection(DB_URL, USER, PWD);
 	}
+}
