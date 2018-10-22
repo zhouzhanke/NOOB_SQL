@@ -35,6 +35,9 @@ public class GUI {
     // static String;
     // static String;
 
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    SQL connc = new SQL();
+
     public GUI() {
         login_Button.addActionListener(new ActionListener() {
             @Override
@@ -46,16 +49,9 @@ public class GUI {
                 String password = login_password.getText();
                 String error_message = "Login information is not correct, please try again";
 
-
-                try{
-                    // Class.forName(driver);
-                    // Connection connection = DriverManager.getConnection(URL, user, password);
-                    Class.forName("com.mysql.jdbc.Driver");
-                    Connection connection;
-                    // connection = DriverManager.getConnection("jdbc:mysql://localhost:10630/test", "zzk", "123");
-                    connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "zzk", "123");
-                    statement = connection.createStatement();
-
+                boolean sign = connc.connect(URL, user, password);
+                if (sign == true)
+                {
                     // switch to operation page
                     JOptionPane.showMessageDialog(null, "login success.");
                     main_panel.removeAll();
@@ -63,22 +59,8 @@ public class GUI {
                     main_panel.repaint();
                     main_panel.revalidate();
                 }
-                catch (SQLException e1)
-                {
-                    System.out.print(e1);
+                else
                     JOptionPane.showMessageDialog(null, error_message);
-                }
-                catch (Exception e2)
-                {
-                    System.out.print(e2);
-                    JOptionPane.showMessageDialog(null, error_message);
-                }
-
-                // for test
-                // main_panel.removeAll();
-                // main_panel.add(operation_panel);
-                // main_panel.repaint();
-                // main_panel.revalidate();
             }
         });
         logout_button.addActionListener(new ActionListener() {
@@ -178,6 +160,8 @@ public class GUI {
                 // command line input
                 String SQL_code = text_command.getText();
                 result = null;
+                String return_result = connc.command(SQL_code);
+                System.out.println(return_result);
                 try {
                     result = statement.executeQuery(SQL_code);
                 } catch (SQLException e1) {
@@ -228,7 +212,7 @@ public class GUI {
                     e1.printStackTrace();
                 }
 
-                text_output.setText(output);
+                text_output.setText(return_result);
             }
         });
     }
