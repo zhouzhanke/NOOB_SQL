@@ -20,13 +20,13 @@ public class GUI {
     private JPasswordField login_password;
     private JButton help_button;
     private JButton logout_button;
-    private JLabel text_sample;
     private JTextArea text_output;
     private JComboBox comboBox1;
     private JPanel simple_mode;
     private JTextArea text_command;
     private JButton command_run;
     private JButton simple_run;
+    private JTextArea text_sample;
 
     private Statement statement;
     ResultSet result;
@@ -100,24 +100,75 @@ public class GUI {
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String value = comboBox1.getSelectedItem().toString();
-                JTextField textField1 = new JTextField();
-                JTextPane textPane1 = new JTextPane();
-                // textField1.setMinimumSize(new Dimension(100,30));
-                textField1.setPreferredSize(new Dimension(100,24));
-                textPane1.setPreferredSize(new Dimension(100,24));
-                if(value == "SELECT") {
-                    simple_mode.add(textField1);
-                    simple_mode.repaint();
-                    simple_mode.revalidate();
-                    // comboBox1.disable();
-                }
+                // String value = comboBox1.getSelectedItem().toString();
+                // JTextField textField1 = new JTextField();
+                // JTextPane textPane1 = new JTextPane();
+                // // textField1.setMinimumSize(new Dimension(100,30));
+                // textField1.setPreferredSize(new Dimension(100,24));
+                // textPane1.setPreferredSize(new Dimension(100,24));
 
-                if(value == "NO") {
-                    simple_mode.removeAll();
-                    simple_mode.add(comboBox1);
-                    simple_mode.repaint();
-                    simple_mode.revalidate();
+                // initialize sample
+                sample sample =  new sample();
+
+                // if(value == "SELECT") {
+                //     text_sample.setText(sample.select);
+                //     // simple_mode.add(textField1);
+                //     // simple_mode.repaint();
+                //     // simple_mode.revalidate();
+                //     // comboBox1.disable();
+                // }
+                // else if(value == "SELECT_")
+
+
+                // get selection index
+                int index = comboBox1.getSelectedIndex();
+                switch (index) {
+                    case 0:
+                        text_sample.setText(sample.select);
+                        break;
+
+                    case 1:
+                        text_sample.setText(sample.select_case);
+                        break;
+
+                    case 2:
+                        text_sample.setText(sample.join);
+                        break;
+
+                    case 3:
+                        text_sample.setText(sample.select_others);
+                        break;
+
+                    case 4:
+                        text_sample.setText(sample.with_select);
+                        break;
+
+                    case 5:
+                        text_sample.setText(sample.as);
+                        break;
+
+                    case 6:
+                        text_sample.setText(sample.create);
+                        break;
+
+                    case 7:
+                        text_sample.setText(sample.drop);
+                        break;
+
+                    case 8:
+                        text_sample.setText(sample.insert);
+                        break;
+
+                    case 9:
+                        text_sample.setText(sample.update);
+                        break;
+
+                    case 10:
+                        text_sample.setText(sample.delete);
+                        break;
+
+                    default:
+                        break;
                 }
             }
         });
@@ -186,6 +237,7 @@ public class GUI {
         JFrame main_frame = new JFrame("NOOB SQL");
         main_frame.setContentPane(new GUI().main_panel);
         main_frame.setPreferredSize(new Dimension(1280,720));
+        main_frame.setMinimumSize(new Dimension(1280,720));
         main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main_frame.pack();
         main_frame.setVisible(true);

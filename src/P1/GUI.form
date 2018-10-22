@@ -198,7 +198,16 @@
                       <autoscrolls value="true"/>
                       <model>
                         <item value="SELECT"/>
-                        <item value="NO"/>
+                        <item value="SELECT...CASE"/>
+                        <item value="SELECT...FROM...JOIN..."/>
+                        <item value="SELECT(others)"/>
+                        <item value="WITH...DELECT"/>
+                        <item value="AS(rename)"/>
+                        <item value="CREATE TABLE"/>
+                        <item value="DELETE TABLE"/>
+                        <item value="ADD ROWS"/>
+                        <item value="UPDATE ROWS"/>
+                        <item value="DELETE ROWS"/>
                       </model>
                     </properties>
                   </component>
@@ -248,12 +257,14 @@
                 <properties/>
                 <border type="none" title="Sample"/>
                 <children>
-                  <component id="f6cf9" class="javax.swing.JLabel" binding="text_sample">
+                  <component id="fd252" class="javax.swing.JTextArea" binding="text_sample">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="50"/>
+                      </grid>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <editable value="false"/>
                     </properties>
                   </component>
                 </children>
