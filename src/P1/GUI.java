@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class GUI {
-    private JPanel main_panel;
+    public JPanel main_panel;
     private JPanel login_panel;
     private JScrollPane operation_panel;
     private JTextField login_JDBC_driver;
@@ -43,11 +43,17 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // login action
-                String driver = login_JDBC_driver.getText();
+                // String driver = login_JDBC_driver.getText();
                 String URL = login_URL.getText();
                 String user = login_user.getText();
                 String password = login_password.getText();
-                String error_message = "Login information is not correct, please try again";
+                // String error_message = "Login information is not correct, please try again";
+
+                // for test login
+                user = "zzk";
+                password = "123";
+                URL = "jdbc:mysql://localhost:3306/test";
+
 
                 boolean sign = connc.connect(URL, user, password);
                 if (sign == true)
@@ -60,7 +66,7 @@ public class GUI {
                     main_panel.revalidate();
                 }
                 else
-                    JOptionPane.showMessageDialog(null, error_message);
+                    JOptionPane.showMessageDialog(null, "Login information is not correct, please try again");
             }
         });
         logout_button.addActionListener(new ActionListener() {
@@ -162,12 +168,18 @@ public class GUI {
                 result = null;
                 String return_result = connc.command(SQL_code);
                 System.out.println(return_result);
-                try {
-                    result = statement.executeQuery(SQL_code);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-                String output = "";
+
+
+
+                // try {
+                //     result = statement.executeQuery(SQL_code);
+                // } catch (SQLException e1) {
+                //     e1.printStackTrace();
+                // }
+                // String output = "";
+
+
+
                 // try {
 
                 //     while (result.next()) {
@@ -186,45 +198,36 @@ public class GUI {
                 //     JOptionPane.showMessageDialog(null, "SQL code fail 2.");
                 //     e2.printStackTrace();
                 // }
-                try {
-                    rsmd = result.getMetaData();
-                    columnsNumber = rsmd.getColumnCount();
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-                try {
-                    while (result.next()) {
-                        for (int i = 1; i <= columnsNumber; i++) {
-                            if (i > 1) System.out.print(",  ");
-                            String columnValue = result.getString(i);
-                            try {
-                                // System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                                output += columnValue + " " + rsmd.getColumnName(i);
-                            } catch (SQLException e1) {
-                                e1.printStackTrace();
-                            }
-                        }
-                        // System.out.println("");
-                        output += "\n";
-                    }
-                }
-                catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
+
+
+                // try {
+                //     rsmd = result.getMetaData();
+                //     columnsNumber = rsmd.getColumnCount();
+                // } catch (SQLException e1) {
+                //     e1.printStackTrace();
+                // }
+                // try {
+                //     while (result.next()) {
+                //         for (int i = 1; i <= columnsNumber; i++) {
+                //             if (i > 1) System.out.print(",  ");
+                //             String columnValue = result.getString(i);
+                //             try {
+                //                 // System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                //                 output += columnValue + " " + rsmd.getColumnName(i);
+                //             } catch (SQLException e1) {
+                //                 e1.printStackTrace();
+                //             }
+                //         }
+                //         // System.out.println("");
+                //         output += "\n";
+                //     }
+                // }
+                // catch (SQLException e1) {
+                //     e1.printStackTrace();
+                // }
 
                 text_output.setText(return_result);
             }
         });
-    }
-
-    public static void main(String[] args) {
-        JFrame main_frame = new JFrame("NOOB SQL");
-        main_frame.setContentPane(new GUI().main_panel);
-        main_frame.setPreferredSize(new Dimension(1280,720));
-        main_frame.setMinimumSize(new Dimension(1280,720));
-        main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main_frame.pack();
-        main_frame.setVisible(true);
-
     }
 }
