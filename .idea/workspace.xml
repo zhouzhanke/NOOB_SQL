@@ -2,24 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29c242e1-88eb-43af-9c0c-9a3dbb658113" name="Default Changelist" comment="GUI update">
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/.idea/P1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/GUI.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/Main.java.change" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/SQL.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/P1/sample.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/AbstractLayout.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/DimensionInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/GridConstraints.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/GridLayoutManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/HorizontalInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/LayoutState.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/Spacer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/SupportCode.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/Util.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/noob_sql/com/intellij/uiDesigner/core/VerticalInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/noob_sql/P1/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/noob_sql/P1/SQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/noob_sql/P1/SQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/P1/GUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/P1/GUI.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/P1/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/P1/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/P1/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/P1/SQL.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,12 +62,13 @@
         <counts>
           <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -82,6 +76,7 @@
           <entry key="change" value="1" />
           <entry key="class" value="1" />
           <entry key="connect" value="1" />
+          <entry key="form" value="1" />
           <entry key="iml" value="1" />
           <entry key="java" value="7" />
           <entry key="rename" value="2" />
@@ -90,6 +85,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
+          <entry key="GUI_DESIGNER_FORM" value="1" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="JAVA" value="8" />
           <entry key="PLAIN_TEXT" value="3" />
@@ -97,12 +93,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="807" />
+          <entry key="java" value="2168" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="807" />
+          <entry key="JAVA" value="2168" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -113,8 +109,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/P1/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+            <state relative-caret-position="150">
+              <caret line="163" column="50" lean-forward="true" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,7 +118,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/noob_sql/P1/.idea/P1.iml">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -130,8 +126,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+            <state relative-caret-position="270">
+              <caret line="18" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -139,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/P1/Main.java.change">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="66" />
+            <state relative-caret-position="-3">
+              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -148,26 +144,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/SQL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="-45">
               <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/P1/SQL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/backup/Main.java.rename">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+              <caret line="102" column="23" lean-forward="true" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -192,14 +182,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/P1/GUI.form" />
         <option value="$PROJECT_DIR$/code/connection/connect.java" />
-        <option value="$PROJECT_DIR$/code/connection/conn/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/code/connection/conn/src/com/company/SQL.java" />
-        <option value="$PROJECT_DIR$/src/P1/SQL.java" />
         <option value="$PROJECT_DIR$/src/P1/GUI.java" />
+        <option value="$PROJECT_DIR$/code/connection/conn/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/src/P1/GUI.form" />
+        <option value="$PROJECT_DIR$/src/P1/SQL.java" />
       </list>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="25" />
@@ -267,18 +263,38 @@
             </path>
             <path>
               <item name="NOOB_SQL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="noob_sql" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NOOB_SQL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="noob_sql" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="P1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NOOB_SQL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="noob_sql" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="P1" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="e9f4de52:FormNode" />
+            </path>
+            <path>
+              <item name="NOOB_SQL" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540214250532" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540237424146" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -372,8 +388,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19318181" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.20227273" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -398,7 +415,7 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.32954547" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -436,10 +453,11 @@
     <MESSAGE value="GUI update" />
     <option name="LAST_COMMIT_MESSAGE" value="GUI update" />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/P1/GUI.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/connection/connect">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -454,43 +472,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/P1/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/P1/Main.java.change">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/SQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/P1/SQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/code/noob_sql/P1/.idea/P1.iml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/backup/Main.java.rename">
       <provider selected="true" editor-type-id="text-editor">
@@ -499,8 +482,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/noob_sql/P1/.idea/P1.iml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/P1/GUI.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/P1/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="163" column="50" lean-forward="true" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/P1/Main.java.change">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/SQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/connection/conn/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/P1/SQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="102" column="23" lean-forward="true" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

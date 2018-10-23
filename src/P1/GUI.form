@@ -285,6 +285,7 @@
                     </constraints>
                     <properties>
                       <editable value="false"/>
+                      <font name="Liberation Mono"/>
                     </properties>
                   </component>
                 </children>

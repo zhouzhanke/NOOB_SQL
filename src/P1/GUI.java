@@ -162,12 +162,12 @@ public class GUI {
                 result = null;
                 String return_result = connc.command(SQL_code);
                 System.out.println(return_result);
-                try {
+/*                try {
                     result = statement.executeQuery(SQL_code);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
-                String output = "";
+                String output = "";*/
                 // try {
 
                 //     while (result.next()) {
@@ -186,7 +186,7 @@ public class GUI {
                 //     JOptionPane.showMessageDialog(null, "SQL code fail 2.");
                 //     e2.printStackTrace();
                 // }
-                try {
+/*                try {
                     rsmd = result.getMetaData();
                     columnsNumber = rsmd.getColumnCount();
                 } catch (SQLException e1) {
@@ -211,7 +211,7 @@ public class GUI {
                 catch (SQLException e1) {
                     e1.printStackTrace();
                 }
-
+*/
                 text_output.setText(return_result);
             }
         });
