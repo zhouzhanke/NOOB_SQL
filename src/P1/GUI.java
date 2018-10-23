@@ -4,16 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-// import java.sql.Connection;
-// import java.sql.DriverManager;
-// import java.sql.SQLException;
 import java.sql.*;
 
 public class GUI {
     public JPanel main_panel;
     private JPanel login_panel;
     private JScrollPane operation_panel;
-    private JTextField login_JDBC_driver;
     private JTextField login_URL;
     private JTextField login_user;
     private JButton login_Button;
@@ -28,17 +24,13 @@ public class GUI {
     private JButton simple_run;
     private JTextArea text_sample;
 
-    private Statement statement;
     ResultSet result;
-    int columnsNumber;
-    ResultSetMetaData rsmd;
-    // static String;
-    // static String;
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     SQL connc = new SQL();
 
     public GUI() {
+        // back ground color for output panel and sample panel
         text_output.setBackground(new Color(69, 73, 74, 0));
         text_sample.setBackground(new Color(69, 73, 74, 0));
 
@@ -46,11 +38,9 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // login action
-                // String driver = login_JDBC_driver.getText();
                 String URL = login_URL.getText();
                 String user = login_user.getText();
                 String password = login_password.getText();
-                // String error_message = "Login information is not correct, please try again";
 
                 // for test login
                 user = "zzk";
@@ -177,63 +167,6 @@ public class GUI {
                 result = null;
                 String return_result = connc.command(SQL_code);
                 System.out.println(return_result);
-
-
-
-                // try {
-                //     result = statement.executeQuery(SQL_code);
-                // } catch (SQLException e1) {
-                //     e1.printStackTrace();
-                // }
-                // String output = "";
-
-
-
-                // try {
-
-                //     while (result.next()) {
-                //         String temp = null;
-                //         try {
-                //             temp = result.getString("EM_ID");
-                //         } catch (SQLException e1) {
-                //             JOptionPane.showMessageDialog(null, "SQL code fail 1.");
-                //             e1.printStackTrace();
-                //         }
-                //         output = temp.replace("\n", ",");
-                //         System.out.println(output);
-                //     }
-                // }
-                // catch (SQLException e2) {
-                //     JOptionPane.showMessageDialog(null, "SQL code fail 2.");
-                //     e2.printStackTrace();
-                // }
-
-
-                // try {
-                //     rsmd = result.getMetaData();
-                //     columnsNumber = rsmd.getColumnCount();
-                // } catch (SQLException e1) {
-                //     e1.printStackTrace();
-                // }
-                // try {
-                //     while (result.next()) {
-                //         for (int i = 1; i <= columnsNumber; i++) {
-                //             if (i > 1) System.out.print(",  ");
-                //             String columnValue = result.getString(i);
-                //             try {
-                //                 // System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                //                 output += columnValue + " " + rsmd.getColumnName(i);
-                //             } catch (SQLException e1) {
-                //                 e1.printStackTrace();
-                //             }
-                //         }
-                //         // System.out.println("");
-                //         output += "\n";
-                //     }
-                // }
-                // catch (SQLException e1) {
-                //     e1.printStackTrace();
-                // }
 
                 text_output.setText(return_result);
             }
