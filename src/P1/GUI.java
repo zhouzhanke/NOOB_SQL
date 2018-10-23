@@ -39,6 +39,9 @@ public class GUI {
     SQL connc = new SQL();
 
     public GUI() {
+        text_output.setBackground(new Color(69, 73, 74, 0));
+        text_sample.setBackground(new Color(69, 73, 74, 0));
+
         login_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +85,13 @@ public class GUI {
         help_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(null, "1. you can check if there are tables exist or not by 'SHOW TABLES'\n" +
+                        "2. if table exist, you can check each table by 'DESC table_name'. if not you can create the table with sample CREATE TABLE.\n" +
+                        "3. you can start with sample SELECT to check if there are any data in the table.\n" +
+                        "4. you can also check sample from ADD ROWS to add new date into a table, or sample from UPDATE ROWS to modify data in the table, or sample from DELETE ROWS to delete data from the table.\n" +
+                        "5. you can check sample from DELETE TABLE to delete a table.\n" +
+                        "\n" +
+                        "if you want you can check all the other sample that we provide to have more understanding about SQL, or you can also search online and try it out in this software.");
             }
         });
         comboBox1.addActionListener(new ActionListener() {
