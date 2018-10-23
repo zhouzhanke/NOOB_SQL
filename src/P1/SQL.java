@@ -158,12 +158,14 @@ public class SQL
         {
             // 处理 JDBC 错误
             se.printStackTrace();
+            result = "SQL code is not correct, please try again.";
         }
 
         catch(Exception e)
         {
             // 处理 Class.forName 错误
             e.printStackTrace();
+            result = "SQL code is not correct, please try again.";
         }
         return result;
 
