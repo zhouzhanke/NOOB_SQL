@@ -25,8 +25,8 @@ public class GUI {
     private JButton simple_run;
     private JTextArea text_sample;
     private JComboBox combo_font_size;
+    private JButton clean_output;
 
-    ResultSet result;
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     SQL connc = new SQL();
@@ -222,7 +222,6 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 // command line input
                 String SQL_code = text_command.getText();
-                result = null;
                 String return_result = connc.command(SQL_code);
                 System.out.println(return_result);
 
@@ -242,6 +241,12 @@ public class GUI {
                 text_command.setFont(system_font[0]);
 
                 main_panel.revalidate();
+            }
+        });
+        clean_output.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text_output.setText("");
             }
         });
     }
