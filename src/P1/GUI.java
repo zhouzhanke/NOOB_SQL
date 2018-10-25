@@ -225,7 +225,7 @@ public class GUI {
                 String return_result = connc.command(SQL_code);
                 System.out.println(return_result);
 
-                text_output.setText(return_result);
+                text_output.append(return_result + "\n");
             }
         });
         combo_font_size.addActionListener(new ActionListener() {
