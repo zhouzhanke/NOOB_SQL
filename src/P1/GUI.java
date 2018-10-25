@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.sql.*;
 
 public class GUI {
     public JPanel main_panel;
@@ -24,8 +25,11 @@ public class GUI {
     private JButton simple_run;
     private JTextArea text_sample;
     private JComboBox combo_font_size;
+    private JButton clean_output;
 
-    private SQL connction = new SQL();
+
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    SQL connc = new SQL();
 
     public GUI() {
         // back ground color for output panel and sample panel
@@ -79,7 +83,7 @@ public class GUI {
                 // password = "123";
 
 
-                boolean sign = connction.connect(URL, user, password);
+                boolean sign = connc.connect(URL, user, password);
                 if (sign == true) {
                     // switch to operation page
                     JOptionPane.showMessageDialog(null, "login success.");
@@ -117,7 +121,7 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // dis-connection from database
-                connction.exit_DB();
+                connc.exit_DB();
 
                 // switch to login page
                 main_panel.removeAll();
@@ -218,7 +222,7 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 // command line input
                 String SQL_code = text_command.getText();
-                String return_result = connction.command(SQL_code);
+                String return_result = connc.command(SQL_code);
                 System.out.println(return_result);
 
                 text_output.setText(return_result);
@@ -237,6 +241,12 @@ public class GUI {
                 text_command.setFont(system_font[0]);
 
                 main_panel.revalidate();
+            }
+        });
+        clean_output.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text_output.setText("");
             }
         });
     }
