@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.sql.*;
 
 public class GUI {
@@ -17,12 +18,13 @@ public class GUI {
     private JButton help_button;
     private JButton logout_button;
     private JTextArea text_output;
-    private JComboBox comboBox1;
+    private JComboBox combo_simple;
     private JPanel simple_mode;
     private JTextArea text_command;
     private JButton command_run;
     private JButton simple_run;
     private JTextArea text_sample;
+    private JComboBox combo_font_size;
 
     ResultSet result;
 
@@ -31,8 +33,41 @@ public class GUI {
 
     public GUI() {
         // back ground color for output panel and sample panel
-        text_output.setBackground(new Color(69, 73, 74, 0));
-        text_sample.setBackground(new Color(69, 73, 74, 0));
+        Color background_color = new Color(69, 73, 74, 0);
+        text_output.setBackground(background_color);
+        text_sample.setBackground(background_color);
+
+        // system font
+        final Font[] system_font = {null};
+        try {
+            // create font
+            InputStream myStream = new BufferedInputStream(new FileInputStream("OxygenMono-Regular.ttf"));
+            system_font[0] = Font.createFont(Font.TRUETYPE_FONT, myStream);
+
+            // // register font
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(system_font[0]);
+            // GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            // ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("OxygenMono-Regular.ttf")));
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+        // Font font = new Font("OxygenMono-Regular", Font.TRUETYPE_FONT, 12);
+        system_font[0] = system_font[0].deriveFont(Font.TRUETYPE_FONT, 14);
+        text_output.setFont(system_font[0]);
+        text_sample.setFont(system_font[0]);
+        text_command.setFont(system_font[0]);
+
+        // load login data from last time
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("login.txt"));
+            login_URL.setText(reader.readLine());
+            login_user.setText(reader.readLine());
+            login_password.setText(reader.readLine());
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         login_Button.addActionListener(new ActionListener() {
             @Override
@@ -43,28 +78,51 @@ public class GUI {
                 String password = login_password.getText();
 
                 // for test login
-                user = "zzk";
-                password = "123";
-                URL = "jdbc:mysql://localhost:3306/test";
+                // URL = "jdbc:mysql://localhost:3306/test";
+                // user = "zzk";
+                // password = "123";
 
 
                 boolean sign = connc.connect(URL, user, password);
-                if (sign == true)
-                {
+                if (sign == true) {
                     // switch to operation page
                     JOptionPane.showMessageDialog(null, "login success.");
+
+                    // save login information
+                    File file = new File("login.txt");
+
+                    //Create the file
+                    try {
+                        if (file.createNewFile()) {
+                            System.out.println("File is created!");
+                        } else {
+                            System.out.println("File already exists.");
+                        }
+
+                        //Write Content
+                        FileWriter writer = null;
+                        writer = new FileWriter(file);
+                        writer.write(URL + "\n" + user + "\n" + password);
+                        writer.close();
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+
                     main_panel.removeAll();
                     main_panel.add(operation_panel);
                     main_panel.repaint();
                     main_panel.revalidate();
-                }
-                else
+                } else
                     JOptionPane.showMessageDialog(null, "Login information is not correct, please try again");
             }
         });
         logout_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // dis-connection from database
+                connc.exit_DB();
+
                 // switch to login page
                 main_panel.removeAll();
                 main_panel.add(login_panel);
@@ -84,10 +142,10 @@ public class GUI {
                         "if you want you can check all the other sample that we provide to have more understanding about SQL, or you can also search online and try it out in this software.");
             }
         });
-        comboBox1.addActionListener(new ActionListener() {
+        combo_simple.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // String value = comboBox1.getSelectedItem().toString();
+                // String value = combo_simple.getSelectedItem().toString();
                 // JTextField textField1 = new JTextField();
                 // JTextPane textPane1 = new JTextPane();
                 // // textField1.setMinimumSize(new Dimension(100,30));
@@ -95,20 +153,20 @@ public class GUI {
                 // textPane1.setPreferredSize(new Dimension(100,24));
 
                 // initialize sample
-                sample sample =  new sample();
+                sample sample = new sample();
 
                 // if(value == "SELECT") {
                 //     text_sample.setText(sample.select);
                 //     // simple_mode.add(textField1);
                 //     // simple_mode.repaint();
                 //     // simple_mode.revalidate();
-                //     // comboBox1.disable();
+                //     // combo_simple.disable();
                 // }
                 // else if(value == "SELECT_")
 
 
                 // get selection index
-                int index = comboBox1.getSelectedIndex();
+                int index = combo_simple.getSelectedIndex();
                 switch (index) {
                     case 0:
                         text_sample.setText(sample.select);
@@ -169,6 +227,21 @@ public class GUI {
                 System.out.println(return_result);
 
                 text_output.setText(return_result);
+            }
+        });
+        combo_font_size.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // change font
+                int font_index = combo_font_size.getSelectedIndex();
+                int font_size = font_index + 10;
+
+                system_font[0] = system_font[0].deriveFont(Font.TRUETYPE_FONT, font_size);
+                text_output.setFont(system_font[0]);
+                text_sample.setFont(system_font[0]);
+                text_command.setFont(system_font[0]);
+
+                main_panel.revalidate();
             }
         });
     }
