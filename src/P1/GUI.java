@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.*;
 
 public class GUI {
@@ -86,53 +88,11 @@ public class GUI {
             e.printStackTrace();
         }
 
-
         login_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // login action
-                String URL = login_URL.getText();
-                String user = login_user.getText();
-                String password = login_password.getText();
-
-                // for test login
-                // URL = "jdbc:mysql://localhost:3306/test";
-                // user = "zzk";
-                // password = "123";
-
-
-                boolean sign = connc.connect(URL, user, password);
-                if (sign == true) {
-                    // switch to operation page
-                    JOptionPane.showMessageDialog(null, "login success.");
-
-                    // save login information
-                    File file = new File("login.txt");
-
-                    //Create the file
-                    try {
-                        if (file.createNewFile()) {
-                            System.out.println("File is created!");
-                        } else {
-                            System.out.println("File already exists.");
-                        }
-
-                        //Write Content
-                        FileWriter writer = null;
-                        writer = new FileWriter(file);
-                        writer.write(URL + "\n" + user + "\n" + password);
-                        writer.close();
-
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-
-                    main_panel.removeAll();
-                    main_panel.add(operation_panel);
-                    main_panel.repaint();
-                    main_panel.revalidate();
-                } else
-                    JOptionPane.showMessageDialog(null, "Login information is not correct, please try again");
+                // login  and switch to operation panel
+                login();
             }
         });
         logout_button.addActionListener(new ActionListener() {
@@ -239,11 +199,7 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // command line input
-                String SQL_code = text_command.getText();
-                String return_result = connc.command(SQL_code);
-                System.out.println(return_result);
-
-                text_output.append(return_result + "\n");
+                output();
             }
         });
         combo_font_size.addActionListener(new ActionListener() {
@@ -281,5 +237,107 @@ public class GUI {
                 text_output.setText("");
             }
         });
+        text_command.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+
+                if(e.getKeyCode() == 10 && e.isControlDown())
+                {
+                    // command line input
+                    output();
+                }
+            }
+        });
+        login_URL.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                // System.out.print("key: " + e.getKeyCode() + "\n");
+                if(e.getKeyCode() == 0)
+                {
+                    // login  and switch to operation panel
+                    login();
+                }
+            }
+        });
+        login_user.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                // System.out.print("key: " + e.getKeyCode() + "\n");
+                if(e.getKeyCode() == 0)
+                {
+                    // login  and switch to operation panel
+                    login();
+                }
+            }
+        });
+        login_password.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                // System.out.print("key: " + e.getKeyCode() + "\n");
+                if(e.getKeyCode() == 0)
+                {
+                    // login  and switch to operation panel
+                    login();
+                }
+            }
+        });
+    }
+
+    private void login() {
+        // login action
+        String URL = login_URL.getText();
+        String user = login_user.getText();
+        String password = login_password.getText();
+
+        // for test login
+        // URL = "jdbc:mysql://localhost:3306/test";
+        // user = "zzk";
+        // password = "123";
+
+
+        boolean sign = connc.connect(URL, user, password);
+        if (sign == true) {
+            // switch to operation page
+            JOptionPane.showMessageDialog(null, "login success.");
+
+            // save login information
+            File file = new File("login.txt");
+
+            //Create the file
+            try {
+                if (file.createNewFile()) {
+                    System.out.println("File is created!");
+                } else {
+                    System.out.println("File already exists.");
+                }
+
+                //Write Content
+                FileWriter writer = null;
+                writer = new FileWriter(file);
+                writer.write(URL + "\n" + user + "\n" + password);
+                writer.close();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            main_panel.removeAll();
+            main_panel.add(operation_panel);
+            main_panel.repaint();
+            main_panel.revalidate();
+        } else
+            JOptionPane.showMessageDialog(null, "Login information is not correct, please try again");
+    }
+
+    private void output() {
+        // command line input
+        String SQL_code = text_command.getText();
+        String return_result = connc.command(SQL_code);
+        System.out.println(return_result);
+        text_output.append(return_result + "\n");
     }
 }
