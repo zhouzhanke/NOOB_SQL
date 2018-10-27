@@ -241,7 +241,7 @@ public class GUI {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
-
+                // System.out.print("key: " + e.getKeyCode() + "\n");
                 if(e.getKeyCode() == 10 && e.isControlDown())
                 {
                     // command line input
@@ -251,10 +251,10 @@ public class GUI {
         });
         login_URL.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyPressed(KeyEvent e) {
                 super.keyTyped(e);
                 // System.out.print("key: " + e.getKeyCode() + "\n");
-                if(e.getKeyCode() == 0)
+                if(e.getKeyCode() == 10)
                 {
                     // login  and switch to operation panel
                     login();
@@ -263,10 +263,9 @@ public class GUI {
         });
         login_user.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyPressed(KeyEvent e) {
                 super.keyTyped(e);
-                // System.out.print("key: " + e.getKeyCode() + "\n");
-                if(e.getKeyCode() == 0)
+                if(e.getKeyCode() == 10)
                 {
                     // login  and switch to operation panel
                     login();
@@ -275,10 +274,9 @@ public class GUI {
         });
         login_password.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyPressed(KeyEvent e) {
                 super.keyTyped(e);
-                // System.out.print("key: " + e.getKeyCode() + "\n");
-                if(e.getKeyCode() == 0)
+                if(e.getKeyCode() == 10)
                 {
                     // login  and switch to operation panel
                     login();
