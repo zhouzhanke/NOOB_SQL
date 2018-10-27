@@ -39,10 +39,10 @@ public class SQL
         return true;
     }
 
-    public String command(String command)
+    public String command(String command, String result)
     {
         String sql = command;
-        String result = null;
+        // String result = null;
 
         try
         {
@@ -82,7 +82,7 @@ public class SQL
                 result += "-";
             }
             result += "+\n";*/
-            result = "+";
+            result += "+";
             for (int i = 0; i < column_count; i++)
             {
                 for (int j = 0; j < column_length[i] + 2; j++)
@@ -132,7 +132,7 @@ public class SQL
                     result += "-";
                 result += "+";
             }
-            result += "\n";
+            result += "\n\n";
 
 /*
             for (int i = 0; i < column_count; i++)
