@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.sql.*;
 
 public class GUI {
     public JPanel main_panel;
@@ -18,14 +17,20 @@ public class GUI {
     private JButton help_button;
     private JButton logout_button;
     private JTextArea text_output;
-    private JComboBox combo_simple;
-    private JPanel simple_mode;
+    // private JComboBox combo_simple;
     private JTextArea text_command;
     private JButton command_run;
     private JButton simple_run;
     private JTextArea text_sample;
     private JComboBox combo_font_size;
     private JButton clean_output;
+    private JPanel command_mode_panel;
+    private JPanel sample_panel;
+    private JPanel output_panel;
+    private JPanel simple_mode_panel;
+    private JLabel font_size_panel;
+    private JPanel simple_stage;
+    private JComboBox simple_stage_1;
 
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -53,6 +58,19 @@ public class GUI {
         }
         // Font font = new Font("OxygenMono-Regular", Font.TRUETYPE_FONT, 12);
         system_font[0] = system_font[0].deriveFont(Font.TRUETYPE_FONT, 14);
+        // simple_mode_panel.setFont(system_font[0]);
+        // command_mode_panel.setFont(system_font[0]);
+        // sample_panel.setFont(system_font[0]);
+        // output_panel.setFont(system_font[0]);
+
+        help_button.setFont(system_font[0]);
+        logout_button.setFont(system_font[0]);
+        simple_run.setFont(system_font[0]);
+        command_run.setFont(system_font[0]);
+        clean_output.setFont(system_font[0]);
+        combo_font_size.setFont(system_font[0]);
+        font_size_panel.setFont(system_font[0]);
+
         text_output.setFont(system_font[0]);
         text_sample.setFont(system_font[0]);
         text_command.setFont(system_font[0]);
@@ -142,7 +160,7 @@ public class GUI {
                         "if you want you can check all the other sample that we provide to have more understanding about SQL, or you can also search online and try it out in this software.");
             }
         });
-        combo_simple.addActionListener(new ActionListener() {
+        simple_stage_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // String value = combo_simple.getSelectedItem().toString();
@@ -166,7 +184,7 @@ public class GUI {
 
 
                 // get selection index
-                int index = combo_simple.getSelectedIndex();
+                int index = simple_stage_1.getSelectedIndex();
                 switch (index) {
                     case 0:
                         text_sample.setText(sample.select);
@@ -236,6 +254,20 @@ public class GUI {
                 int font_size = font_index + 10;
 
                 system_font[0] = system_font[0].deriveFont(Font.TRUETYPE_FONT, font_size);
+
+                // simple_mode_panel.setFont(system_font[0]);
+                // command_mode_panel.setFont(system_font[0]);
+                // sample_panel.setFont(system_font[0]);
+                // output_panel.setFont(system_font[0]);
+
+                help_button.setFont(system_font[0]);
+                logout_button.setFont(system_font[0]);
+                simple_run.setFont(system_font[0]);
+                command_run.setFont(system_font[0]);
+                clean_output.setFont(system_font[0]);
+                combo_font_size.setFont(system_font[0]);
+                font_size_panel.setFont(system_font[0]);
+
                 text_output.setFont(system_font[0]);
                 text_sample.setFont(system_font[0]);
                 text_command.setFont(system_font[0]);
