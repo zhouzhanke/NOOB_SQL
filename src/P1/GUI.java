@@ -147,6 +147,7 @@ public class GUI {
                 int index = simple_stage_1.getSelectedIndex();
                 switch (index) {
                     case 0:
+
                         text_sample.setText(sample.select);
                         break;
 
