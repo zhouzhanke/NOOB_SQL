@@ -8,6 +8,9 @@ public class SQL
     public Statement stmt = null;
     public ResultSet rs = null;
     public ResultSetMetaData rsmd = null;
+    public String table_name[] = null;
+    public String column_name[] = null;
+    public int column_count = 0;
 
     public boolean connect(String URL, String UN, String PWD)
     {
@@ -39,10 +42,92 @@ public class SQL
         return true;
     }
 
-    public String command(String command, String result)
+    public int get_table_name()
+    {
+        this.rs = null;
+        this.rsmd = null;
+        this.table_name = null;
+        String sql = "show tables;";
+        int count = 0;
+
+        try
+        {
+            this.rs = stmt.executeQuery(sql);
+            this.rsmd = rs.getMetaData();
+
+            while (rs.next())
+            {
+                count++;
+            }
+            System.out.println(count);
+
+            rs.beforeFirst();
+            table_name = new String[count];
+
+            int i = 0;
+            while (rs.next())
+            {
+              table_name[i] = rs.getString(1);
+              System.out.println(table_name[i]);
+              i++;
+            }
+        }
+        catch(SQLException se)
+        {
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }
+
+        catch(Exception e)
+        {
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public int get_column_name(String table_name)
+    {
+        this.rs = null;
+        this.rsmd = null;
+        String sql = "select * from " + table_name + ";";
+        int count = 0;
+        System.out.println("[" + table_name + "]" );
+
+        try
+        {
+            this.rs = stmt.executeQuery(sql);
+            this.rsmd = rs.getMetaData();
+
+            count = rsmd.getColumnCount();
+            this.column_name = new String[rsmd.getColumnCount()];
+
+            for (int i = 0; i < count; i++)
+            {
+                this.column_name[i] = rsmd.getColumnName(i + 1);
+                System.out.println(rsmd.getColumnName(i + 1));
+            }
+        }
+        catch(SQLException se)
+        {
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }
+
+        catch(Exception e)
+        {
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }
+        this.column_count = count;
+        return count;
+    }
+
+
+    public String command(String command)
     {
         String sql = command;
-        // String result = null;
+        String result = null;
 
         try
         {
@@ -77,12 +162,7 @@ public class SQL
             int total = IntStream.of(column_length).sum();
 
             //column name
-/*            for (int i = 0; i < total + 1; i++)
-            {
-                result += "-";
-            }
-            result += "+\n";*/
-            result += "+";
+            result = "+";
             for (int i = 0; i < column_count; i++)
             {
                 for (int j = 0; j < column_length[i] + 2; j++)

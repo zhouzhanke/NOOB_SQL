@@ -33,10 +33,29 @@ public class GUI {
     private JLabel font_size_panel;
     private JPanel simple_stage;
     private JComboBox simple_stage_1;
-
+    public JPanel simple_command;
+    private JPanel select_panel;
+    private JComboBox select_table_name;
+    private JComboBox select_column_name_1;
+    private JTextField select_condition;
+    private JButton select_plus;
+    private JComboBox select_column_name_2;
+    private JComboBox select_column_name_3;
+    private JComboBox select_column_name_4;
+    private JComboBox select_column_name_5;
+    private JButton select_minus;
+    private int select_column_total = 5;
+    private int select_column_current = 1;
+    private JComboBox select_column_name[] = {this.select_column_name_1, this.select_column_name_2,
+            this.select_column_name_3, this.select_column_name_4, this.select_column_name_5};
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     SQL connc = new SQL();
+    simple_input_panel  simple = new simple_input_panel();
+
+    //varibles for select
+    String table_name[] = null;
+    String column_name[] = null;
 
     public GUI() {
         // back ground color for output panel and sample panel
@@ -120,6 +139,99 @@ public class GUI {
                         "if you want you can check all the other sample that we provide to have more understanding about SQL, or you can also search online and try it out in this software.");
             }
         });
+        select_table_name.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                select_column_current = 1;
+
+                for (int i = 1; i < select_column_total; i++)
+                    select_column_name[i].setVisible(false);
+
+                String table = (String)select_table_name.getSelectedItem();
+                for (int i = 0; i < select_column_total; i++)
+                    select_column_name[i].removeAllItems();
+                select_column_name_1.removeAllItems();
+                int count = connc.get_column_name(table);
+                String column_name[] = connc.column_name;
+                for (int i = 0; i < count; i++)
+                {
+                    for (int j = 0; j < select_column_total; j++)
+                        select_column_name[j].addItem(column_name[i]);
+                }
+                select_column_name_1.addItem("*");
+                select_column_name_1.setSelectedIndex(connc.column_count);
+            }
+        });
+
+        select_plus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (select_column_current == select_column_total) {
+                    JOptionPane.showMessageDialog(null,
+                            "The maximum of column is 5, can not be over it.");
+                    return;
+                }
+                select_column_name_1.setSelectedIndex(0);
+                select_column_current++;
+                if (select_column_current == 2)
+                    select_column_name[0].removeItemAt(connc.column_count);
+                select_column_name[select_column_current - 1].setVisible(true);
+            }
+        });
+        select_minus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(select_column_current == 1) {
+                    JOptionPane.showMessageDialog(null, "This is the last one.");
+                    return;
+                }
+
+                select_column_current--;
+                if (select_column_current == 1) {
+                    select_column_name[0].addItem("*");
+                    select_column_name[0].setSelectedIndex(connc.column_count);
+                }
+                select_column_name[select_column_current].setVisible(false);
+            }
+        });
+
+        simple_run.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int index = simple_stage_1.getSelectedIndex();
+
+                switch (index)
+                {
+                    case 1:
+                        String sql = "select ";
+                        if ((String)select_column_name_1.getSelectedItem() == "*")
+                            sql += "* ";
+                        else {
+                            for (int i = 0; i < select_column_current; i++) {
+                                sql += (String) select_column_name[i].getSelectedItem();
+                                if (select_column_current != i + 1)
+                                    sql += ", ";
+                                else
+                                    sql += " ";
+                            }
+                        }
+
+                        sql += "FROM " + select_table_name.getSelectedItem() + " ";
+                        String condition = select_condition.getText().trim();
+                        if (!condition.equals(""))
+                        {
+                            sql += "where " + select_condition.getText();
+                        }
+                        System.out.println(sql);
+                        String result = connc.command(sql) + "\n";
+                        text_output.append(result);
+                        break;
+                }
+
+            }
+        });
+
         simple_stage_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -144,10 +256,9 @@ public class GUI {
 
 
                 // get selection index
-                int index = simple_stage_1.getSelectedIndex();
+                int index = simple_stage_1.getSelectedIndex() - 1;
                 switch (index) {
                     case 0:
-
                         text_sample.setText(sample.select);
                         break;
 
@@ -192,6 +303,7 @@ public class GUI {
                         break;
 
                     default:
+                        text_sample.setText("");
                         break;
                 }
             }
@@ -326,10 +438,22 @@ public class GUI {
 
             main_panel.removeAll();
             main_panel.add(operation_panel);
+            simple_command.add(simple.panel1);
             main_panel.repaint();
             main_panel.revalidate();
+            set_select_table_name();
         } else
             JOptionPane.showMessageDialog(null, "Login information is not correct, please try again");
+    }
+    public void set_select_table_name()
+    {
+        select_table_name.removeAllItems();
+        int count = connc.get_table_name();
+        this.table_name = connc.table_name;
+        for (int i = 0; i < count; i++)
+        {
+            select_table_name.addItem(table_name[i]);
+        }
     }
 
     private void output() {
