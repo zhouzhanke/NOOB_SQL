@@ -49,6 +49,9 @@ public class GUI {
     private JComboBox select_column_name[] = {this.select_column_name_1, this.select_column_name_2,
             this.select_column_name_3, this.select_column_name_4, this.select_column_name_5};
 
+    private String simple_reult = null;
+
+
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     SQL connc = new SQL();
     simple_input_panel  simple = new simple_input_panel();
@@ -62,6 +65,7 @@ public class GUI {
         Color background_color = new Color(69, 73, 74, 0);
         text_output.setBackground(background_color);
         text_sample.setBackground(background_color);
+
 
         // system font
         final Font[] system_font = {null};
@@ -204,28 +208,8 @@ public class GUI {
                 switch (index)
                 {
                     case 1:
-                        String sql = "select ";
-                        if ((String)select_column_name_1.getSelectedItem() == "*")
-                            sql += "* ";
-                        else {
-                            for (int i = 0; i < select_column_current; i++) {
-                                sql += (String) select_column_name[i].getSelectedItem();
-                                if (select_column_current != i + 1)
-                                    sql += ", ";
-                                else
-                                    sql += " ";
-                            }
-                        }
-
-                        sql += "FROM " + select_table_name.getSelectedItem() + " ";
-                        String condition = select_condition.getText().trim();
-                        if (!condition.equals(""))
-                        {
-                            sql += "where " + select_condition.getText();
-                        }
-                        System.out.println(sql);
-                        String result = connc.command(sql) + "\n";
-                        text_output.append(result);
+                        select_result();
+                        text_output.append(simple_reult);
                         break;
                 }
 
@@ -260,6 +244,9 @@ public class GUI {
                 switch (index) {
                     case 0:
                         text_sample.setText(sample.select);
+                        simple_command.add(select_panel);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 1:
@@ -303,6 +290,9 @@ public class GUI {
                         break;
 
                     default:
+                        simple_command.removeAll();
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         text_sample.setText("");
                         break;
                 }
@@ -438,7 +428,7 @@ public class GUI {
 
             main_panel.removeAll();
             main_panel.add(operation_panel);
-            simple_command.add(simple.panel1);
+            simple_command.removeAll();
             main_panel.repaint();
             main_panel.revalidate();
             set_select_table_name();
@@ -454,6 +444,31 @@ public class GUI {
         {
             select_table_name.addItem(table_name[i]);
         }
+    }
+
+    public void select_result()
+    {
+        String sql = "select ";
+        if ((String)select_column_name_1.getSelectedItem() == "*")
+            sql += "* ";
+        else {
+            for (int i = 0; i < select_column_current; i++) {
+                sql += (String) select_column_name[i].getSelectedItem();
+                if (select_column_current != i + 1)
+                    sql += ", ";
+                else
+                    sql += " ";
+            }
+        }
+
+        sql += "FROM " + select_table_name.getSelectedItem() + " ";
+        String condition = select_condition.getText().trim();
+        if (!condition.equals(""))
+        {
+            sql += "where " + select_condition.getText();
+        }
+        System.out.println(sql);
+        simple_reult = connc.command(sql) + "\n";
     }
 
     private void output() {
