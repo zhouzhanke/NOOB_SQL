@@ -68,6 +68,7 @@ public class GUI {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     SQL connc = new SQL();
 
+
     //varibles for select
     String table_name[] = null;
     String column_name[] = null;
