@@ -55,6 +55,7 @@ public class GUI {
     private JButton create_table_minus;
     private JSpinner create_table_column_number;
     private JPanel panel_404;
+    private JTextField jdbcMysqlLocalhost3306TextField;
     private int select_column_total = 5;
     private int select_column_current = 1;
     private JComboBox select_column_name[] = {this.select_column_name_1, this.select_column_name_2,
@@ -112,6 +113,7 @@ public class GUI {
         text_output.setFont(system_font[0]);
         text_sample.setFont(system_font[0]);
         text_command.setFont(system_font[0]);
+        combo_font_size.setSelectedIndex(4);
 
         // load login data from last time
         try {
@@ -460,6 +462,17 @@ public class GUI {
                 {
                     // login  and switch to operation panel
                     login();
+                }
+            }
+        });
+        command_run.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode() == 10 && e.isControlDown())
+                {
+                    // command line input
+                    output();
                 }
             }
         });
