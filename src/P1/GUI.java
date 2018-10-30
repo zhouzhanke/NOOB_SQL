@@ -44,10 +44,23 @@ public class GUI {
     private JComboBox select_column_name_4;
     private JComboBox select_column_name_5;
     private JButton select_minus;
+    private JPanel create_panel;
+    private JTextField textField1;
+    private JButton createColumnButton;
+    private JTextField textField3;
+    private JTextField textField4;
+    private JPanel create_column_main_panel;
+    private JPanel column_panel;
+    private JButton create_table_plus;
+    private JButton create_table_minus;
+    private JSpinner create_table_column_number;
+    private JPanel panel_404;
     private int select_column_total = 5;
     private int select_column_current = 1;
     private JComboBox select_column_name[] = {this.select_column_name_1, this.select_column_name_2,
             this.select_column_name_3, this.select_column_name_4, this.select_column_name_5};
+    private JPanel create_table_panels[] = {column_panel};
+    private int create_table_count = 1;
 
     private String simple_reult = null;
 
@@ -244,6 +257,7 @@ public class GUI {
                 switch (index) {
                     case 0:
                         text_sample.setText(sample.select);
+                        simple_command.removeAll();
                         simple_command.add(select_panel);
                         simple_command.repaint();
                         simple_command.revalidate();
@@ -251,42 +265,88 @@ public class GUI {
 
                     case 1:
                         text_sample.setText(sample.select_case);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 2:
                         text_sample.setText(sample.join);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 3:
                         text_sample.setText(sample.select_others);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 4:
                         text_sample.setText(sample.with_select);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 5:
                         text_sample.setText(sample.as);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 6:
                         text_sample.setText(sample.create);
+                        /*simple_command.removeAll();
+                        simple_command.add(create_panel);
+                        create_column_main_panel.removeAll();
+                        simple_command.repaint();
+                        simple_command.revalidate();*/
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 7:
                         text_sample.setText(sample.drop);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
+
                         break;
 
                     case 8:
                         text_sample.setText(sample.insert);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 9:
                         text_sample.setText(sample.update);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     case 10:
                         text_sample.setText(sample.delete);
+                        simple_command.removeAll();
+                        simple_command.add(panel_404);
+                        simple_command.repaint();
+                        simple_command.revalidate();
                         break;
 
                     default:
@@ -296,6 +356,23 @@ public class GUI {
                         text_sample.setText("");
                         break;
                 }
+            }
+        });
+        createColumnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                create_column_main_panel.removeAll();
+
+                int num = (int)create_table_column_number.getValue();
+                System.out.println(num);
+                create_table_panels = new JPanel[num];
+                for (int i = 0; i < num; i++)
+                {
+                    create_table_panels[i] = column_panel;
+                }
+
+                create_column_main_panel.repaint();
+                create_column_main_panel.revalidate();
             }
         });
         command_run.addActionListener(new ActionListener() {
@@ -429,6 +506,9 @@ public class GUI {
             main_panel.removeAll();
             main_panel.add(operation_panel);
             simple_command.removeAll();
+            SpinnerNumberModel limit_model = new SpinnerNumberModel(1, 1, 100, 1);
+            create_table_column_number.setModel(limit_model);
+
             main_panel.repaint();
             main_panel.revalidate();
             set_select_table_name();
