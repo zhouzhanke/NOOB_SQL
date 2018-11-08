@@ -236,9 +236,19 @@ public class SQL
         }
         catch(SQLException se)
         {
-            // 处理 JDBC 错误
-            se.printStackTrace();
-            result = "SQL code is not correct, please try again.";
+            try {
+                stmt.execute(sql);
+                result = "Operation success.";
+            } catch (SQLException e) {
+                try {
+                    stmt.executeUpdate(sql);
+                    result = "Operation success.";
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                    // 处理 JDBC 错误
+                    result = "SQL code is not correct, please try again.";
+                }
+            }
         }
 
         catch(Exception e)
