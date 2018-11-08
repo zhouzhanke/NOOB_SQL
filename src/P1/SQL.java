@@ -131,6 +131,18 @@ public class SQL
 
         try
         {
+            System.out.println(sql);
+            String buffer = sql;
+            String str[] = buffer.split(" ");
+
+            for (String element: str)
+                System.out.println(element);
+
+            int sql_case = 0;
+
+            if (str[0].equalsIgnoreCase("SELECT"))
+                sql_case = 1;
+
             this.rs = stmt.executeQuery(sql);
             this.rsmd = rs.getMetaData();
             int column_count = rsmd.getColumnCount();
@@ -139,7 +151,6 @@ public class SQL
             for (int i = 1; i <= column_count; i++)
             {
                 String get = rsmd.getColumnName(i);
-                System.out.println(get);
                 int length = get.length();
                 column_length[i - 1] = length;
             }
@@ -149,7 +160,7 @@ public class SQL
                 for (int i = 1; i <= column_count; i++)
                 {
                     String get = rs.getString(i);
-                    if (get.length() > column_length[i - 1])
+                    if (get != null && get.length() > column_length[i - 1])
                         column_length[i-1] = get.length();
                 }
             }
@@ -198,8 +209,13 @@ public class SQL
                     result += "| ";
                     String get = rs.getString(i);
                     result += get;
+                    int get_length = 0;
+                    if (get == null)
+                        get_length = 4;
+                    else
+                        get_length = get.length();
 
-                    for (int j = 0; j < column_length[i - 1] - get.length() + 1; j++)
+                    for (int j = 0; j < column_length[i - 1] - get_length + 1; j++)
                         result += " ";
                 }
                 result += "|\n";
