@@ -1,6 +1,6 @@
-#Noob SQL
-help beginner to learn SQL
-
+Noob SQL
+---
+the purpose of this project is help beginner to learn SQL
 
 the IDE we are using in this project is Intellij IDEA, we are using some built-in GUI tool in this project, if you encounter some compile issue, please try compile it in Intellij IDEA.
 
