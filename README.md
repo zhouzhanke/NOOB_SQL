@@ -1,23 +1,24 @@
-IDE:
-    the IDE we are using in this project is Intellij IDEA, we are using some built-in GUI tool in this project,
-    if you encounter some compile issue, please try compile it in Intellij IDEA.
+#Noob SQL
+help beginner to learn SQL
 
-Programming language:
-    the programing language we are using is java.
+
+the IDE we are using in this project is Intellij IDEA, we are using some built-in GUI tool in this project, if you encounter some compile issue, please try compile it in Intellij IDEA.
+
+Programming language: the programing language we are using is java.
 
 Libraries:
-     Java SE Development Kit 8u191, https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-     ysql-connector-java-5.1.39-bin, it is in the zip file
+1. [Java SE Development Kit 8u191](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+2. mysql-connector-java-5.1.39-bin, it is in the zip file
 
-Working copy:
-    locate in jar folder, if you are using Linux or MAC OSX, you should be able to run it by 'java -jar noob_sql.jar'
+The working copy is locate in jar folder, if you are using Linux or MAC OSX, you should be able to run it by 'java -jar noob_sql.jar'
 
 Notice:
-    1. the project currently only work on local MYSQL database server.
-    2. for simple mode (or guiled mode), duo to complexity and time, only first one is implemented.
+   1. the project currently only work on local MYSQL database server.
+   2. for simple mode (or guiled mode), duo to complexity and time, only first one is implemented.
 
 
 Files:
+
     /README.txt                             project information.
 
     /login.txt                              save login information.
