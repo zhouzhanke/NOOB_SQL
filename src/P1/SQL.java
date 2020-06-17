@@ -1,9 +1,9 @@
 package P1;
+
 import java.sql.*;
 import java.util.stream.*;
 
-public class SQL
-{
+public class SQL {
     public Connection conn = null;
     public Statement stmt = null;
     public ResultSet rs = null;
@@ -12,51 +12,40 @@ public class SQL
     public String column_name[] = null;
     public int column_count = 0;
 
-    public boolean connect(String URL, String UN, String PWD)
-    {
+    public boolean connect(String URL, String UN, String PWD) {
         String DB_URL = URL;
         String USER = UN;
         String PASS = PWD;
 
-        try
-        {
+        try {
             this.conn = DriverManager.getConnection(DB_URL, USER, PASS);
             this.stmt = conn.createStatement();
 
             System.out.println("Connection Success");
-        }
-
-        catch(SQLException se)
-        {
+        } catch (SQLException se) {
             // 处理 JDBC 错误
             se.printStackTrace();
             return false;
-        }
-
-        catch(Exception e)
-        {
-        // 处理 Class.forName 错误
+        } catch (Exception e) {
+            // 处理 Class.forName 错误
             e.printStackTrace();
             return false;
         }
         return true;
     }
 
-    public int get_table_name()
-    {
+    public int get_table_name() {
         this.rs = null;
         this.rsmd = null;
         this.table_name = null;
         String sql = "show tables;";
         int count = 0;
 
-        try
-        {
+        try {
             this.rs = stmt.executeQuery(sql);
             this.rsmd = rs.getMetaData();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 count++;
             }
             System.out.println(count);
@@ -65,57 +54,43 @@ public class SQL
             table_name = new String[count];
 
             int i = 0;
-            while (rs.next())
-            {
-              table_name[i] = rs.getString(1);
-              System.out.println(table_name[i]);
-              i++;
+            while (rs.next()) {
+                table_name[i] = rs.getString(1);
+                System.out.println(table_name[i]);
+                i++;
             }
-        }
-        catch(SQLException se)
-        {
+        } catch (SQLException se) {
             // 处理 JDBC 错误
             se.printStackTrace();
-        }
-
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             // 处理 Class.forName 错误
             e.printStackTrace();
         }
         return count;
     }
 
-    public int get_column_name(String table_name)
-    {
+    public int get_column_name(String table_name) {
         this.rs = null;
         this.rsmd = null;
         String sql = "select * from " + table_name + ";";
         int count = 0;
-        System.out.println("[" + table_name + "]" );
+        System.out.println("[" + table_name + "]");
 
-        try
-        {
+        try {
             this.rs = stmt.executeQuery(sql);
             this.rsmd = rs.getMetaData();
 
             count = rsmd.getColumnCount();
             this.column_name = new String[rsmd.getColumnCount()];
 
-            for (int i = 0; i < count; i++)
-            {
+            for (int i = 0; i < count; i++) {
                 this.column_name[i] = rsmd.getColumnName(i + 1);
                 System.out.println(rsmd.getColumnName(i + 1));
             }
-        }
-        catch(SQLException se)
-        {
+        } catch (SQLException se) {
             // 处理 JDBC 错误
             se.printStackTrace();
-        }
-
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             // 处理 Class.forName 错误
             e.printStackTrace();
         }
@@ -124,18 +99,16 @@ public class SQL
     }
 
 
-    public String command(String command)
-    {
+    public String command(String command) {
         String sql = command;
         String result = null;
 
-        try
-        {
+        try {
             System.out.println(sql);
             String buffer = sql;
             String str[] = buffer.split(" ");
 
-            for (String element: str)
+            for (String element : str)
                 System.out.println(element);
 
             int sql_case = 0;
@@ -148,20 +121,17 @@ public class SQL
             int column_count = rsmd.getColumnCount();
             int[] column_length = new int[column_count];
 
-            for (int i = 1; i <= column_count; i++)
-            {
+            for (int i = 1; i <= column_count; i++) {
                 String get = rsmd.getColumnName(i);
                 int length = get.length();
                 column_length[i - 1] = length;
             }
 
-            while (rs.next())
-            {
-                for (int i = 1; i <= column_count; i++)
-                {
+            while (rs.next()) {
+                for (int i = 1; i <= column_count; i++) {
                     String get = rs.getString(i);
                     if (get != null && get.length() > column_length[i - 1])
-                        column_length[i-1] = get.length();
+                        column_length[i - 1] = get.length();
                 }
             }
 
@@ -174,16 +144,14 @@ public class SQL
 
             //column name
             result = "+";
-            for (int i = 0; i < column_count; i++)
-            {
+            for (int i = 0; i < column_count; i++) {
                 for (int j = 0; j < column_length[i] + 2; j++)
                     result += "-";
                 result += "+";
             }
             result += "\n";
 
-            for (int i = 1; i <= column_count; i++)
-            {
+            for (int i = 1; i <= column_count; i++) {
                 result += "| ";
                 String get = rsmd.getColumnName(i);
                 result += get;
@@ -194,18 +162,15 @@ public class SQL
             result += "|\n";
 
             result += "+";
-            for (int i = 0; i < column_count; i++)
-            {
+            for (int i = 0; i < column_count; i++) {
                 for (int j = 0; j < column_length[i] + 2; j++)
                     result += "-";
                 result += "+";
             }
             result += "\n";
 
-            while (rs.next())
-            {
-                for (int i = 1; i <= column_count; i++)
-                {
+            while (rs.next()) {
+                for (int i = 1; i <= column_count; i++) {
                     result += "| ";
                     String get = rs.getString(i);
                     result += get;
@@ -222,8 +187,7 @@ public class SQL
             }
 
             result += "+";
-            for (int i = 0; i < column_count; i++)
-            {
+            for (int i = 0; i < column_count; i++) {
                 for (int j = 0; j < column_length[i] + 2; j++)
                     result += "-";
                 result += "+";
@@ -249,9 +213,7 @@ public class SQL
             }
             result += "+\n";
 */
-        }
-        catch(SQLException se)
-        {
+        } catch (SQLException se) {
             try {
                 stmt.execute(sql);
                 result = "Operation success.";
@@ -265,10 +227,7 @@ public class SQL
                     result = "SQL code is not correct, please try again.";
                 }
             }
-        }
-
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             // 处理 Class.forName 错误
             e.printStackTrace();
             result = "SQL code is not correct, please try again.";
@@ -278,23 +237,15 @@ public class SQL
 
     }
 
-    public void exit_DB()
-    {
-        try
-        {
-            if(stmt!=null) stmt.close();
-        }
-        catch(SQLException se2)
-        {
+    public void exit_DB() {
+        try {
+            if (stmt != null) stmt.close();
+        } catch (SQLException se2) {
         }// 什么都不做
 
-        try
-        {
-            if(conn!=null) conn.close();
-        }
-
-        catch(SQLException se)
-        {
+        try {
+            if (conn != null) conn.close();
+        } catch (SQLException se) {
             se.printStackTrace();
         }
     }
